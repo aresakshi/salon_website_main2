@@ -147,15 +147,32 @@ const initializeDatabase = async () => {
         )`
     ];
 
-    try {
+        try {
         for (const sql of tables) {
             await exe(sql);
         }
         console.log("✅ All database tables checked/created successfully.");
+
+        // --- CHECK AND CREATE DEFAULT ADMIN USER ---
+        // Check if an admin with email 'admin@salon.com' already exists
+        const existingAdmin = await exe("SELECT * FROM users WHERE email = 'admin@salon.com'");
+        
+        if (existingAdmin.length === 0) {
+            // INSERT PLAIN TEXT PASSWORD (WITHOUT BCRYPT)
+            await exe("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", 
+                ['Admin User', 'admin@salon.com', 'admin123', 'admin']);
+            
+            console.log("🔐 Default Admin User Created!");
+            console.log("   Email: admin@salon.com");
+            console.log("   Password: admin123");
+        } else {
+            console.log("ℹ️ Admin user already exists.");
+        }
+        // -------------------------------------------
+
     } catch (error) {
         console.error("❌ Error creating tables:", error);
     }
-};
 
 // --- 7. START SERVER ---
 // We call the init function before listening
