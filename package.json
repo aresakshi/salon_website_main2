@@ -27,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/aresakshi/salon_website_main/issues"
   },
-  "homepage": "https://github.com/aresakshi/salon_website_main#readme"
+  "homepage": "https://github.com/aresakshi/salon_website_main#readme",
+  "devDependencies": {}
 }
