@@ -9,7 +9,7 @@
     "mysql2": "^3.16.1",
     "util": "^0.12.5"
   },
-  "name": "salon_website_main",
+  "name": "salon_website_main2",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
