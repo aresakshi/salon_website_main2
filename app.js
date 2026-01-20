@@ -153,14 +153,18 @@ const initializeDatabase = async () => {
         }
         console.log("✅ All database tables checked/created successfully.");
 
-        // --- CHECK AND CREATE DEFAULT ADMIN USER ---
+               // --- CHECK AND CREATE DEFAULT ADMIN USER ---
         // Check if an admin with email 'admin@salon.com' already exists
         const existingAdmin = await exe("SELECT * FROM users WHERE email = 'admin@salon.com'");
         
         if (existingAdmin.length === 0) {
-            // INSERT PLAIN TEXT PASSWORD (WITHOUT BCRYPT)
+            const bcrypt = require('bcrypt');
+            // Hash the password 'admin123' securely
+            const hashedPassword = await bcrypt.hash('admin123', 10);
+            
+            // Insert the admin user
             await exe("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", 
-                ['Admin User', 'admin@salon.com', 'admin123', 'admin']);
+                ['Admin User', 'admin@salon.com', hashedPassword, 'admin']);
             
             console.log("🔐 Default Admin User Created!");
             console.log("   Email: admin@salon.com");
