@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.16.1",
+    "util": "^0.12.5"
+  },
+  "name": "salon_website_main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aresakshi/salon_website_main.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aresakshi/salon_website_main/issues"
+  },
+  "homepage": "https://github.com/aresakshi/salon_website_main#readme",
+  "devDependencies": {}
+}

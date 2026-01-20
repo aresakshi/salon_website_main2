@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<!-- Hero/Banner -->
+<div style="background: var(--gradient-main); color: white; padding: 80px 0; text-align: center;">
+    <h1>About ARE's Salon</h1>
+    <p>Experience Luxury and Elegance</p>
+</div>
+
+<!-- Split Section 1: Story -->
+<section class="section-padding">
+    <div class="container">
+        <div class="split-section">
+            <div class="split-content">
+                <h2 style="color: var(--primary-dark); margin-bottom: 20px;">Our Story</h2>
+                <p class="mb-4">
+                    At ARE's Salon, we believe that beauty is an art form. Established with a vision to redefine luxury grooming, we provide a sanctuary where you can relax, rejuvenate, and revive your style.
+                </p>
+                <p>
+                    Our team of expert stylists and beauticians are dedicated to bringing out the best version of you. Using premium organic products and state-of-the-art techniques, we ensure every visit is a memorable experience.
+                </p>
+                <a href="/gallery" class="btn-main mt-2">View Our Work</a>
+            </div>
+            <div class="split-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfigke_Tc5OWvyu6ha49NS6vzwacdd_Go74w&s" alt="Salon Interior">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Split Section 2: Why Choose Us (Right Content, Left Image for variety) -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="split-section" style="flex-direction: row-reverse;">
+            <div class="split-content">
+                <h2 style="color: var(--primary-dark); margin-bottom: 20px;">Why Choose Us?</h2>
+                <ul class="feature-list">
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Certified & Experienced Professionals</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Premium Organic & Skin-Safe Products</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Hygienic & Relaxing Ambiance</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Customized Bridal & Party Packages</li>
+                </ul>
+                <div class="mt-4">
+                    <h4 style="color: var(--primary-brown);">Our Vision</h4>
+                    <p><em>"<%= content.vision || 'To be the premier destination for beauty and wellness.' %>"</em></p>
+                </div>
+            </div>
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035" alt="Why Choose Us">
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include("footer") %>
+</body>
+</html>

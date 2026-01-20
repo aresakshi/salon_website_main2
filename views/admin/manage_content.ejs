@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Content</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include("navbar") %>
+
+<div class="admin-main">
+    <div class="card p-4 shadow-sm">
+        <h3>Update Website Content</h3>
+        <form action="/admin/update_content" method="POST">
+            <% 
+                let mission = "", vision = "", about_home = "";
+                content.forEach(c => {
+                    if(c.section_name === 'mission') mission = c.content;
+                    if(c.section_name === 'vision') vision = c.content;
+                    if(c.section_name === 'about_home') about_home = c.content;
+                });
+            %>
+            <div class="mb-3">
+                <label>Home Page Mission</label>
+                <textarea name="mission" class="form-control" rows="3"><%= mission %></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Home Page Vision</label>
+                <textarea name="vision" class="form-control" rows="3"><%= vision %></textarea>
+            </div>
+            <div class="mb-3">
+                <label>About Section Text</label>
+                <textarea name="about_home" class="form-control" rows="5"><%= about_home %></textarea>
+            </div>
+            <button class="btn btn-primary" style="background: var(--primary-brown); border:none;">Update Content</button>
+        </form>
+    </div>
+</div>
+<%- include("footer") %>
+</body>
+</html>

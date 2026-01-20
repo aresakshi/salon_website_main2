@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Facilities</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include("navbar") %>
+
+<div class="admin-main">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm">
+                <h4>Add New Facility</h4>
+                <form action="/admin/save_facility" method="POST" enctype="multipart/form-data">
+                    <div class="mb-2">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label>Price</label>
+                        <input type="text" name="price" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label>Duration</label>
+                        <input type="text" name="duration" class="form-control" placeholder="e.g. 30 Mins">
+                    </div>
+                    <div class="mb-2">
+                        <label>Category</label>
+                        <select name="category" class="form-control">
+                            <option value="Hair">Hair</option>
+                            <option value="Facial">Facial</option>
+                            <option value="Spa">Spa</option>
+                            <option value="Makeup">Makeup</option>
+                            
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label>Image</label>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+                    <button class="btn btn-primary w-100" style="background: var(--primary-brown); border:none;">Add Facility</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card p-3 shadow-sm">
+                <h4>Existing Facilities</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% facilities.forEach(function(val){ %>
+                        <tr>
+                            <td><img src="<%= val.image_path %>" width="50" height="50" style="border-radius:5px;"></td>
+                            <td><%= val.title %></td>
+                            <td>₹<%= val.price %></td>
+                            <td>
+                                <a href="/admin/delete_facility/<%= val.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("footer") %>
+</body>
+</html>

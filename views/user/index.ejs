@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARE's Salon | Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<!-- Dynamic Hero Slider -->
+<section class="hero-slider">
+    <% if(sliders.length > 0) { %>
+        <% sliders.forEach((slide, index) => { %>
+            <div class="slide <%= index === 0 ? 'active' : '' %>">
+                <% if(slide.image_path) { %>
+                    <img src="<%= slide.image_path %>" alt="Slide">
+                <% } %>
+                <div class="slide-content">
+                    <h1><%= slide.title %></h1>
+                    <p><%= slide.subtitle %></p>
+                    <% if(!user) { %>
+                        <a href="/login" class="btn-main btn-lg">Book Appointment</a>
+                    <% } else { %>
+                        <a href="/contact" class="btn-main btn-lg">Book Appointment</a>
+                    <% } %>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <!-- Fallback Slider -->
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035" alt="Salon">
+            <div class="slide-content">
+                <h1>Welcome to ARE's Salon</h1>
+                <p>Experience the epitome of luxury and style.</p>
+                <a href="/Facilities" class="btn-main btn-lg">Explore Services</a>
+            </div>
+        </div>
+    <% } %>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card-custom" style="background: linear-gradient(135deg, #865D36, #AC8968); color: white;">
+                    <div class="card-body text-center">
+                        <!-- <i class="bi bi-eye fs-1 mb-3"></i> -->
+                        <h2>Our Vision</h2>
+                        <p><%= content.vision || "To be the leading beauty destination..." %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-custom" style="background: linear-gradient(135deg, #3E362E, #865D36); color: white;">
+                    <div class="card-body text-center">
+                        <!-- <i class="bi bi-bullseye fs-1 mb-3"></i> -->
+                        <h2>Our Mission</h2>
+                        <p><%= content.mission || "To provide exceptional service..." %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us (Split Layout) -->
+<section class="section-padding" style="background-color: #AC8968;">
+    <div class="container">
+        <div class="split-section row"> <!-- Added row class -->
+            <div class="split-content col-md-6">
+                <h2 style="color: var(--primary-dark); font-weight: 700; margin-bottom: 20px;">Why Choose ARE's Salon?</h2>
+                <p class="mb-4">We combine years of expertise with high-quality products to give you the look you deserve.</p>
+                <ul class="feature-list">
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Certified Professionals</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Organic & Premium Products</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Hygienic Environment</li>
+                    <li><span class="feature-icon"><i class="bi bi-check"></i></span> Personalized Consultation</li>
+                </ul>
+                <a href="/about" class="btn-main mt-3">Read More</a>
+            </div>
+            <div class="split-image ">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUfKFqi-GSS6cc6f7ypV37zFMjWw-L-fjlfg&s" alt="Why Choose Us">
+            </div>
+
+
+            
+        </div>
+
+
+        
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Services Preview -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Premium Services</h2>
+            <p>Top-rated treatments tailored for you</p>
+        </div>
+        <div class="row g-4">
+            <% facilities.forEach(function(facility){ %>
+                <div class="col-md-4">
+                    <div class="card-custom">
+                        <div class="card-img-wrapper">
+                            <img src="<%= facility.image_path %>" alt="<%= facility.title %>">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= facility.title %></h5>
+                            <p class="text-muted small"><%= facility.description.substring(0, 60) %>...</p>
+                            <p class="card-price">₹<%= facility.price %></p>
+                            <a href="/contact" class="btn-outline">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="accordion" id="faqAccordion">
+                  <% faqs.forEach((f, i) => { %>
+                    <div class="accordion-item" style="border: none; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden;">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button <%= i !== 0 ? 'collapsed' : '' %>" type="button" style="background: var(--light-bg); font-weight: 600;" data-bs-toggle="collapse" data-bs-target="#collapse<%= i %>">
+                          <%= f.question %>
+                        </button>
+                      </h2>
+                      <!-- FIXED: Added empty quotes '' to end ternary operator -->
+                      <!-- FIXED: Moved accordion-body INSIDE this div -->
+                      <div id="collapse<%= i %>" class="accordion-collapse collapse <%= i === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body bg-white"><%= f.answer %></div>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include("footer") %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Simple Slider Logic
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gallery - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<div style="background: var(--primary-dark); color: white; padding: 60px 0; text-align: center;">
+    <h1>Our Work Gallery</h1>
+    <p>A glimpse into our artistry</p>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <% if(gallery.length > 0) { %>
+                <% gallery.forEach(function(item){ %>
+                    <div class="col-md-4 col-sm-6">
+                        <div style="position: relative; overflow: hidden; border-radius: 15px; height: 300px; cursor: pointer;">
+                            <img src="<%= item.image_path %>" alt="<%= item.image_title %>" 
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                            <div style="position: absolute; bottom: -50px; left: 0; width: 100%; background: rgba(62, 54, 46, 0.8); color: white; padding: 15px; transition: bottom 0.3s;">
+                                <h6 class="m-0"><%= item.image_title %></h6>
+                                <small><%= item.category || 'Salon Work' %></small>
+                            </div>
+                        </div>
+                        <!-- Simple CSS hover logic via inline style for file simplicity -->
+                        <style>
+                            .col-md-4 div:hover img { transform: scale(1.1); }
+                            .col-md-4 div:hover .gallery-text { bottom: 0 !important; }
+                        </style>
+                        <!-- Note: Added class gallery-text in logic below -->
+                        <script>
+                            document.currentScript.previousElementSibling.previousElementSibling.querySelector('div:last-child').classList.add('gallery-text');
+                        </script>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p class="text-center w-100">Gallery coming soon.</p>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<%- include("footer") %>
+</body>
+</html>

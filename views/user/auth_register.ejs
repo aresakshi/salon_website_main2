@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background: var(--light-bg);">
+    <div class="auth-container">
+        <h3>Create Account</h3>
+        
+        <% if (typeof error != 'undefined' && error) { %>
+            <div class="alert alert-danger p-2 text-center"><%= error %></div>
+        <% } %>
+
+        <form action="/register" method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" required><br>
+            
+            <label>Email Address</label>
+            <input type="email" name="email" class="form-control" required><br>
+            
+            <label>Phone Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="Enter phone number" required><br>
+            
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required><br>
+            
+            <button type="submit" class="btn-main w-100 mt-3">Register</button>
+        </form>
+        
+        <div class="auth-link">
+            Already have an account? <a href="/login" style="color: var(--primary-brown);">Login here</a>
+        </div>
+    </div>
+</body>
+</html>

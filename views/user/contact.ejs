@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact & Book - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="split-section">
+            
+            <!-- Left: Contact Info -->
+            <div class="split-content">
+                <h2 style="color: var(--primary-dark);">Get In Touch</h2>
+                <p class="mb-4">Visit us for a consultation or reach out via phone.</p>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-geo-alt-fill fs-3 me-3" style="color: var(--primary-brown);"></i>
+                    <div>
+                        <strong>Address</strong>
+                        <p class="m-0"><%= settings.address || '123 Beauty Street, City Center' %></p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-telephone-fill fs-3 me-3" style="color: var(--primary-brown);"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p class="m-0"><%= settings.phone || '+91 98765 43210' %></p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <i class="bi bi-envelope-fill fs-3 me-3" style="color: var(--primary-brown);"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p class="m-0"><%= settings.email || 'contact@ares.com' %></p>
+                    </div>
+                </div>
+                
+                <!-- General Contact Form (Guests can use this) -->
+                <div class="bg-light p-4 rounded border">
+                    <h5>Send us a message</h5>
+                    <form action="/save_contact_form" method="POST">
+                        <input type="text" name="client_name" class="form-control mb-2" placeholder="Your Name" required>
+                        <input type="email" name="client_email" class="form-control mb-2" placeholder="Your Email" required>
+                        <textarea name="client_message" class="form-control" rows="2" placeholder="Message"></textarea>
+                        <button type="submit" class="btn-outline w-100 mt-2">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right: Booking Form -->
+            <div class="split-image" style="background: var(--gradient-main); padding: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; height: auto;">
+                
+                <div style="width: 100%; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <h3 class="text-center mb-4" style="color: var(--primary-brown);">Book Appointment</h3>
+                    
+                    <% if(user) { %>
+                        <!-- Logged In User Booking Form -->
+                        <form action="/book_appointment" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="client_name" class="form-control" value="<%= user.name %>" readonly>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" name="client_phone" class="form-control" placeholder="Enter Phone Number" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Service</label>
+                                <select name="service_name" class="form-select">
+                                    <% facilities.forEach(function(fac){ %>
+                                        <option value="<%= fac.title %>"><%= fac.title %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" name="appointment_date" class="form-control" required>
+                            </div>
+                            
+                            <button type="submit" class="btn-main w-100">Confirm Booking</button>
+                        </form>
+                    <% } else { %>
+                        <!-- Guest Prompt -->
+                        <div class="text-center py-5">
+                            <i class="bi bi-lock-fill fs-1 text-muted mb-3"></i>
+                            <h4>Login Required</h4>
+                            <p class="text-muted mb-4">You must be logged in to book an appointment.</p>
+                            <a href="/login" class="btn-main w-100">Login to Book</a>
+                        </div>
+                    <% } %>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<%- include("footer") %>
+</body>
+</html>

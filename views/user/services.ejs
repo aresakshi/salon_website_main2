@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Our Services - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<div style="background: var(--gradient-main); color: white; padding: 60px 0; text-align: center;">
+    <h1>Our Premium Services</h1>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <!-- Split Section: Text Left, Image Right -->
+        <div class="split-section mb-5">
+            <div class="split-content">
+                <h2 style="color: var(--primary-dark);">Expert Hair Styling</h2>
+                <p>From trendy haircuts to sophisticated coloring treatments, our stylists master the art of hair care. We use the finest products to ensure your hair remains healthy and vibrant.</p>
+                <ul class="feature-list">
+                    <li><i class="bi bi-check2 text-muted me-2"></i> Haircuts & Styling</li>
+                    <li><i class="bi bi-check2 text-muted me-2"></i> Global Coloring</li>
+                    <li><i class="bi bi-check2 text-muted me-2"></i> Keratin Treatments</li>
+                </ul>
+                <a href="/Facilities" class="btn-outline mt-2">View Pricing</a>
+            </div>
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df" alt="Hair Styling">
+            </div>
+        </div>
+
+        <!-- Split Section: Image Left, Text Right -->
+        <div class="split-section mb-5" style="flex-direction: row-reverse;">
+            <div class="split-content">
+                <h2 style="color: var(--primary-dark);">Skin & Bridal Makeup</h2>
+                <p>Look flawless on your special day. Our bridal packages include pre-bridal care, mehendi, and HD makeup. For daily glow, try our organic facials.</p>
+                <ul class="feature-list">
+                    <li><i class="bi bi-check2 text-muted me-2"></i> HD & Airbrush Makeup</li>
+                    <li><i class="bi bi-check2 text-muted me-2"></i> Organic Facials</li>
+                    <li><i class="bi bi-check2 text-muted me-2"></i> Manicure & Pedicure</li>
+                </ul>
+                <a href="/Facilities" class="btn-outline mt-2">View Pricing</a>
+            </div>
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2" alt="Makeup">
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include("footer") %>
+</body>
+</html>

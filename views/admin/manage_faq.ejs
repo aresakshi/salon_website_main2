@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include("navbar") %>
+
+<div class="admin-main">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card p-3 shadow-sm">
+                <h4>Add FAQ</h4>
+                <form action="/admin/save_faq" method="POST">
+                    <label>Question</label>
+                    <input type="text" name="question" class="form-control mb-2" required>
+                    <label>Answer</label>
+                    <textarea name="answer" class="form-control mb-3" rows="3" required></textarea>
+                    <button class="btn btn-primary w-100" style="background: var(--primary-brown); border:none;">Add FAQ</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card p-3 shadow-sm">
+                <h4>FAQ List</h4>
+                <div class="accordion" id="adminFaq">
+                  <% faqs.forEach((f, index) => { %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adminFaq<%= index %>">
+                            <%= f.question %>
+                          </button>
+                        </h2>
+                        <div id="adminFaq<%= index %>" class="accordion-collapse collapse" data-bs-parent="#adminFaq">
+                          <div class="accordion-body">
+                            <%= f.answer %>
+                            <a href="/admin/delete_faq/<%= f.id %>" class="btn btn-danger btn-sm float-end">Delete</a>
+                          </div>
+                        </div>
+                    </div>
+                  <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("footer") %>
+</body>
+</html>

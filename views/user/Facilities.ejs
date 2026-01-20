@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Service Menu - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<div class="section-padding bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Service Menu</h2>
+            <p>Premium treatments at transparent prices</p>
+        </div>
+
+        <div class="row g-4">
+            <% if(facilities.length > 0) { %>
+                <% facilities.forEach(function(facility){ %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card-custom">
+                            <div class="card-img-wrapper">
+                                <% if(facility.image_path) { %>
+                                    <img src="<%= facility.image_path %>" alt="<%= facility.title %>">
+                                <% } else { %>
+                                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1" alt="Service">
+                                <% } %>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <h5 class="card-title"><%= facility.title %></h5>
+                                    <span class="badge bg-warning text-dark"><%= facility.category || 'General' %></span>
+                                </div>
+                                <p class="text-muted small mt-2"><%= facility.description %></p>
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                                    <span class="card-price">₹<%= facility.price %></span>
+                                    <small class="text-muted"><i class="bi bi-clock"></i> <%= facility.duration %></small>
+                                </div>
+                                <a href="/contact" class="btn-main w-100 mt-3">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p class="text-center w-100">No services available at the moment.</p>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include("footer") %>
+</body>
+</html>

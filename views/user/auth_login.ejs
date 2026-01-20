@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ARE's Salon</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background: var(--light-bg);">
+    <div class="auth-container">
+        <h3>Welcome Back</h3>
+        <% if(error) { %>
+            <div class="alert alert-danger p-2 text-center"><%= error %></div>
+        <% } %>
+        
+        <form action="/login" method="POST">
+            <!-- If there is a redirect parameter, keep it in the form so the POST knows where to go -->
+            <% if (redirect) { %>
+                <input type="hidden" name="redirect" value="<%= redirect %>">
+            <% } %>
+
+            <label>Email Address</label>
+            <input type="email" name="email" class="form-control" required>
+            
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+            
+            <button type="submit" class="btn-main w-100 mt-3">Login</button>
+        </form>
+        
+        <div class="auth-link">
+            <!-- CHANGE HERE: Only show Register link if NOT an admin login -->
+            <% if (!isAdminLogin) { %>
+                Don't have an account? <a href="/register" style="color: var(--primary-brown);">Register</a>
+            <% } else { %>
+                <span class="text-muted small">Contact Administrator for access.</span>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include("navbar") %>
+
+<div class="admin-main">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold" style="color: var(--primary-dark);">Overview</h3>
+        <span class="text-muted"><%= new Date().toDateString() %></span>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="fw-bold mb-0" style="color: var(--primary-brown);"><%= totalClients || 0 %></h4>
+                        <small class="text-muted">Total Users</small>
+                    </div>
+                    <div class="bg-light p-3 rounded-circle">
+                        <i class="bi bi-people fs-4 text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="fw-bold mb-0" style="color: var(--primary-brown);"><%= totalAppointments || 0 %></h4>
+                        <small class="text-muted">Appointments</small>
+                    </div>
+                    <div class="bg-light p-3 rounded-circle">
+                        <i class="bi bi-calendar-check fs-4 text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="fw-bold mb-0" style="color: var(--primary-brown);"><%= totalFacilities || 0 %></h4>
+                        <small class="text-muted">Services</small>
+                    </div>
+                    <div class="bg-light p-3 rounded-circle">
+                        <i class="bi bi-scissors fs-4 text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="fw-bold mb-0" style="color: var(--primary-brown);"><%= totalGallery || 0 %></h4>
+                        <small class="text-muted">Gallery</small>
+                    </div>
+                    <div class="bg-light p-3 rounded-circle">
+                        <i class="bi bi-image fs-4 text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Appointments Table -->
+    <div class="bg-white p-4 rounded shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold m-0" style="color: var(--primary-dark);">Recent Appointments</h5>
+            <a href="/admin/appointment_list" class="btn btn-sm btn-outline-primary" style="color: var(--primary-brown); border-color: var(--primary-brown);">View All</a>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr style="background-color: #f8f9fa;">
+                        <th>Client Name</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof recentAppointments !== 'undefined' && recentAppointments.length > 0) { %>
+                        <% recentAppointments.forEach(function(app) { %>
+                            <tr>
+                                <td><%= app.client_name %></td>
+                                <td><%= app.service_name %></td>
+                                <td>
+                                    <%= app.appointment_date ? new Date(app.appointment_date).toISOString().split('T')[0] : 'N/A' %>
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill" 
+                                          style="background-color: #ffc107; color: #000;">
+                                        <%= app.status || 'Pending' %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/admin/appointment_list" class="btn btn-sm" style="background: #e9ecef;">
+                                        <i class="bi bi-three-dots"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                No recent appointments found. 
+                                <a href="/contact">Add one</a>.
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
