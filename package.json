@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
@@ -15,7 +16,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,5 @@
   "bugs": {
     "url": "https://github.com/aresakshi/salon_website_main/issues"
   },
-  "homepage": "https://github.com/aresakshi/salon_website_main#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/aresakshi/salon_website_main#readme"
 }
